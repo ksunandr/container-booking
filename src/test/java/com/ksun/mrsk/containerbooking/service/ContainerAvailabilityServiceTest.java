@@ -1,7 +1,7 @@
 package com.ksun.mrsk.containerbooking.service;
 
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
-import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
+import com.ksun.mrsk.containerbooking.model.dto.BookingCheckRequest;
 import com.ksun.mrsk.containerbooking.model.dto.ContainerType;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerAvailabilityServiceTest {
 
@@ -45,7 +43,7 @@ class ContainerAvailabilityServiceTest {
 
     @Test
     void checkAvailable() {
-        BookingRequest bookingRequest = new BookingRequest(1, ContainerType.DRY, "", "", 1);
+        BookingCheckRequest bookingRequest = new BookingCheckRequest(1, ContainerType.DRY, "", "", 1);
         mockBackEnd.enqueue(new MockResponse()
                 .setBody("1=1")
                 .addHeader("Content-Type", "application/json"));

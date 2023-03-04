@@ -2,11 +2,13 @@ package com.ksun.mrsk.containerbooking.controller;
 
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
+import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
+import com.ksun.mrsk.containerbooking.model.dto.BookingCheckRequest;
 import com.ksun.mrsk.containerbooking.service.ContainerAvailabilityService;
+import com.ksun.mrsk.containerbooking.service.ContainerBookingService;
 import com.ksun.mrsk.containerbooking.validator.BookingRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -22,21 +24,28 @@ import java.util.stream.Collectors;
 public class ContainerController {
 
     private final ContainerAvailabilityService containerAvailabilityService;
+    private final ContainerBookingService containerBookingService;
 
     @Autowired
-    public ContainerController(ContainerAvailabilityService containerAvailabilityService) {
+    public ContainerController(ContainerAvailabilityService containerAvailabilityService, ContainerBookingService containerBookingService) {
         this.containerAvailabilityService = containerAvailabilityService;
+        this.containerBookingService = containerBookingService;
     }
 
-    @PostMapping("/test")
-    public Mono<AvailableCheck> availableCheck(@Valid @RequestBody BookingRequest bookingRequest){
+    @PostMapping("/check")
+    public Mono<AvailableCheck> availableCheck(@Valid @RequestBody BookingCheckRequest bookingRequest){
         return containerAvailabilityService.checkAvailable(bookingRequest);
     }
 
-    @GetMapping("/test")
-    public Mono<AvailableCheck> availableCheck1(@Valid @RequestBody BookingRequest bookingRequest){
-        return containerAvailabilityService.checkAvailable(bookingRequest);
+    @PostMapping("/booking")
+    public Mono<BookingResponse> book(@Valid @RequestBody BookingRequest bookingRequest){
+        return containerBookingService.book(bookingRequest);
     }
+
+//    @GetMapping("/test")
+//    public Mono<AvailableCheck> availableCheck1(@Valid @RequestBody BookingRequest bookingRequest){
+//        return containerAvailabilityService.checkAvailable(bookingRequest);
+//    }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder){
