@@ -4,18 +4,15 @@ package com.ksun.mrsk.containerbooking.model.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
 public class BookingRequest {
 
-    @Min(value = 20, message = "ksan message") //todo
-    @Max(40)
+
     @NotNull(message = "containerSizetette")
-   // @NotBlank(message = "must not be blank!")
     private Integer containerSize; //– either 20 or 40
-   //
+    // @NotBlank(message = "Task description must not be blank!")
     private ContainerType containerType; // – DRY, REEFER
 
     @Min(5)
@@ -25,10 +22,12 @@ public class BookingRequest {
 
     @Min(5)
     @Max(20)
+    @NotNull(message = "destination")
     String destination;  //– min 5, max 20
 
     @Min(1)
     @Max(100)
+    @NotNull(message = "quantity")
     Integer quantity; // – min 1, max 100
 
     public BookingRequest() {

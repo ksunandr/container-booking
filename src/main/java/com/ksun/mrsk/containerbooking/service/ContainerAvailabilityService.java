@@ -3,7 +3,7 @@ package com.ksun.mrsk.containerbooking.service;
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 
-import jakarta.annotation.PostConstruct;
+//import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -45,10 +45,10 @@ public class ContainerAvailabilityService {
     }
 
 
-    @PostConstruct
-    public void a() {
-        checkAvailable(null);
-    }
+//    @PostConstruct
+//    public void a() {
+//        checkAvailable(null);
+//    }
 
 
 }

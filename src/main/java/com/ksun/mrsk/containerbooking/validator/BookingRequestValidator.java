@@ -14,10 +14,10 @@ public class BookingRequestValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         BookingRequest bookingRequest = (BookingRequest) target;
-        if (bookingRequest.getContainerSize() > 20) {
+        if (bookingRequest.getContainerSize() == 20 || bookingRequest.getContainerSize() == 40) {
             return;
         }
-        errors.reject("code");
+        errors.reject("code", "custom validator");
 
 
     }

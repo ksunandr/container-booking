@@ -30,13 +30,11 @@ public class ContainerController {
 
     @GetMapping("/test")
     public ResponseEntity<String> test(@Valid @RequestBody BookingRequest bookingRequest){
-        return new ResponseEntity<>(bookingRequest.getContainerSize().toString(), HttpStatus.OK);
+        return new ResponseEntity<>("test", HttpStatus.OK);
+        //return new ResponseEntity<>(bookingRequest.getContainerSize().toString(), HttpStatus.OK);
     }
 
-    @PostMapping("/test")
-    public ResponseEntity<String> checkAvailable(@Valid @RequestBody BookingRequest bookingRequest) {
-        return new ResponseEntity<>(" post", HttpStatus.OK); //containerAvailabilityService.checkAvailable(bookingRequest);
-    }
+
 
     @InitBinder
     protected void initBinder(WebDataBinder binder){
@@ -44,14 +42,13 @@ public class ContainerController {
     }
 
     @ExceptionHandler(WebExchangeBindException.class)
-    public ResponseEntity<List<String>> handlerException(WebExchangeBindException e){
+    public ResponseEntity<List<String>> handleException(WebExchangeBindException e) {
         var errors = e.getBindingResult()
                 .getAllErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
         return ResponseEntity.badRequest().body(errors);
-
     }
 
 
