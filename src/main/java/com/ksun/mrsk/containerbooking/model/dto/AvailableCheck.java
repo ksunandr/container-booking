@@ -1,8 +1,6 @@
 package com.ksun.mrsk.containerbooking.model.dto;
 
-import java.io.Serializable;
-
-public class AvailableCheck  {
+public class AvailableCheck   {
 
     private String origin;
 
@@ -10,12 +8,11 @@ public class AvailableCheck  {
         super();
     }
 
-
     public AvailableCheck(String available) {
         super(); this.origin = available;
     }
 
-    public String isOrigin() {
+    public String getOrigin() {
         return origin;
     }
 
