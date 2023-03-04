@@ -3,6 +3,7 @@ package com.ksun.mrsk.containerbooking.service;
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,15 +12,15 @@ import reactor.core.publisher.Mono;
 @Component
 public class ContainerAvailabilityService {
 
-   private final WebClient client;
+    private final WebClient client;
 
-   @Autowired
+    @Autowired
     public ContainerAvailabilityService() {
-        this.client =  WebClient.create("https://httpbin.org/");;
+        this.client = WebClient.create("https://httpbin.org/");
+        ;
     }
 
     public Mono<AvailableCheck> checkAvailable(BookingRequest bookingRequest) {
-
 
 
 //        WebClient client = WebClient.create("https://www.maersk.com");
@@ -39,13 +40,13 @@ public class ContainerAvailabilityService {
         testResponse.subscribe(System.out::println);
 
 
-
-
-return null;
+        return null;
 
     }
-   // @PostConstruct
-    public void a(){
+
+
+    @PostConstruct
+    public void a() {
         checkAvailable(null);
     }
 

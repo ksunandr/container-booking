@@ -3,13 +3,19 @@ package com.ksun.mrsk.containerbooking.controller;
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.service.ContainerAvailabilityService;
+import com.ksun.mrsk.containerbooking.validator.BookingRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.WebExchangeBindException;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -30,6 +36,22 @@ public class ContainerController {
     @PostMapping("/test")
     public ResponseEntity<String> checkAvailable(@Valid @RequestBody BookingRequest bookingRequest) {
         return new ResponseEntity<>(" post", HttpStatus.OK); //containerAvailabilityService.checkAvailable(bookingRequest);
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder){
+        binder.addValidators(new BookingRequestValidator());
+    }
+
+    @ExceptionHandler(WebExchangeBindException.class)
+    public ResponseEntity<List<String>> handlerException(WebExchangeBindException e){
+        var errors = e.getBindingResult()
+                .getAllErrors()
+                .stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList());
+        return ResponseEntity.badRequest().body(errors);
+
     }
 
 
