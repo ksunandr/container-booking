@@ -13,6 +13,8 @@ public class BookingRequest {
     @NotNull(message = "containerSizetette")
     private Integer containerSize; //– either 20 or 40
     // @NotBlank(message = "Task description must not be blank!")
+
+    @NotNull(message = "containerType")
     private ContainerType containerType; // – DRY, REEFER
 
     @Min(5)

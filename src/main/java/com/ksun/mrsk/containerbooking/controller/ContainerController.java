@@ -28,13 +28,15 @@ public class ContainerController {
         this.containerAvailabilityService = containerAvailabilityService;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test(@Valid @RequestBody BookingRequest bookingRequest){
-        return new ResponseEntity<>("test", HttpStatus.OK);
-        //return new ResponseEntity<>(bookingRequest.getContainerSize().toString(), HttpStatus.OK);
+    @PostMapping("/test")
+    public Mono<AvailableCheck> availableCheck(@Valid @RequestBody BookingRequest bookingRequest){
+        return containerAvailabilityService.checkAvailable(bookingRequest);
     }
 
-
+    @GetMapping("/test")
+    public Mono<AvailableCheck> availableCheck1(@Valid @RequestBody BookingRequest bookingRequest){
+        return containerAvailabilityService.checkAvailable(bookingRequest);
+    }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder){

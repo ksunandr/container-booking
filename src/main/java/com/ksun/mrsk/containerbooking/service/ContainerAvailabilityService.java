@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class ContainerAvailabilityService {
 
@@ -32,23 +34,23 @@ public class ContainerAvailabilityService {
 //        spaceAvailabilityMono.subscribe(System.out::println);
 
 
-        Mono<TestDTO> testResponse = client.get()
+        Mono<AvailableCheck> testResponse = client.get()
                 .uri("/ip")
                 .retrieve()
-                .bodyToMono(TestDTO.class);
+                .bodyToMono(AvailableCheck.class);
 
-        testResponse.subscribe(System.out::println);
+       // testResponse.subscribe(System.out::println);
 
 
-        return null;
+        return testResponse;
 
     }
 
 
-//    @PostConstruct
-//    public void a() {
-//        checkAvailable(null);
-//    }
+    @PostConstruct
+    public void a() {
+        checkAvailable(null);
+    }
 
 
 }
