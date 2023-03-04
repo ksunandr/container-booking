@@ -20,7 +20,6 @@ public class ContainerAvailabilityService {
     @Autowired
     public ContainerAvailabilityService() {
         this.client = WebClient.create("https://www.maersk.com");
-        ;
     }
 
     public Mono<AvailableCheck> checkAvailable(BookingRequest bookingRequest) {
@@ -32,7 +31,6 @@ public class ContainerAvailabilityService {
 //                .bodyToMono(SpaceAvailabilityResponse.class)
 //                .map(e -> new AvailableCheck(e.getAvailableSpace() > 0));
 //
-////
 
           return Mono.just(new SpaceAvailabilityResponse(0))
                   .map(e -> new AvailableCheck(e.getAvailableSpace()>0));
