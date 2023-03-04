@@ -19,41 +19,32 @@ public class ContainerAvailabilityService {
 
     @Autowired
     public ContainerAvailabilityService() {
-        this.client = WebClient.create("https://httpbin.org/");
+        this.client = WebClient.create("https://www.maersk.com");
         ;
     }
 
     public Mono<AvailableCheck> checkAvailable(BookingRequest bookingRequest) {
 
 
-//        WebClient client = WebClient.create("https://www.maersk.com");
-//        Mono<SpaceAvailabilityResponse> spaceAvailabilityMono = client.post()
+//        return client.post()
 //                .uri("/api/bookings/checkAvailable")
 //                .retrieve()
-//                .bodyToMono(SpaceAvailabilityResponse.class);
+//                .bodyToMono(SpaceAvailabilityResponse.class)
+//                .map(e -> new AvailableCheck(e.getAvailableSpace() > 0));
 //
-//        spaceAvailabilityMono.subscribe(System.out::println);
+////
 
-
-//        Mono<SpaceAvailabilityResponse> testResponse = client.get()
-//                .uri("/ip")
-//                .retrieve()
-//                .bodyToMono(SpaceAvailabilityResponse.class);
-//
-
-        return  Mono.just(new SpaceAvailabilityResponse(1)).map(e -> new AvailableCheck(e.getAvailableSpace()>0));
-
-
-
+          return Mono.just(new SpaceAvailabilityResponse(0))
+                  .map(e -> new AvailableCheck(e.getAvailableSpace()>0));
 
 
     }
 
 
-    @PostConstruct
-    public void a() {
-        checkAvailable(null);
-    }
+//    @PostConstruct
+//    public void a() {
+//        checkAvailable(null);
+//    }
 
 
 }
