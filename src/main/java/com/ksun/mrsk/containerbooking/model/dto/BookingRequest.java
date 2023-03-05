@@ -1,11 +1,12 @@
 package com.ksun.mrsk.containerbooking.model.dto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class BookingRequest extends CheckRequest {
 
     @NotNull(message = "timestamp")
-    //@Pattern(regexp = )todo ^(19|20)\d\d-(0[1-9]|1[012])-([012]\d|3[01])T([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$
+    @Pattern(regexp = "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})Z$")
     private String timestamp;
 
     public BookingRequest(Integer containerSize, ContainerType containerType, String origin, String destination,
