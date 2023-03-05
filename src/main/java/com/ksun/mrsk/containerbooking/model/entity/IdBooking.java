@@ -10,7 +10,7 @@ public class IdBooking {
     public static final String ID_NAME = "id_booking_incrementer";
     public static final int ID_INITIAL = 957000000;
 
-    @PrimaryKey("nextId")
+    @PrimaryKey("current_id")
     private int currentId;
 
     @Column(value = "id_name")
