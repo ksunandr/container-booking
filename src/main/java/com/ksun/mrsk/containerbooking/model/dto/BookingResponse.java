@@ -10,8 +10,7 @@ public class BookingResponse {
         this.bookingRef = bookingRef;
     }
 
-    public BookingResponse() {
-    }
+
 
     public String getBookingRef() {
         return bookingRef;

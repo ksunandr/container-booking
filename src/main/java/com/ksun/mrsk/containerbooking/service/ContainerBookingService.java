@@ -1,12 +1,10 @@
 package com.ksun.mrsk.containerbooking.service;
 
 
-
-import com.ksun.mrsk.containerbooking.model.Booking;
-import com.ksun.mrsk.containerbooking.model.IdBooking;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
-
+import com.ksun.mrsk.containerbooking.model.entity.Booking;
+import com.ksun.mrsk.containerbooking.model.entity.IdBooking;
 import com.ksun.mrsk.containerbooking.repository.BookingRepository;
 import com.ksun.mrsk.containerbooking.repository.IdRepository;
 import org.springframework.beans.factory.annotation.Autowired;

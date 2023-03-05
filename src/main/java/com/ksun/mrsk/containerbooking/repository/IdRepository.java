@@ -1,7 +1,6 @@
 package com.ksun.mrsk.containerbooking.repository;
 
-import com.ksun.mrsk.containerbooking.model.IdBooking;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import com.ksun.mrsk.containerbooking.model.entity.IdBooking;
 import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
 import org.springframework.stereotype.Repository;
 

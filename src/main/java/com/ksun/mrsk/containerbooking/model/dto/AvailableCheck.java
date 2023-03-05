@@ -4,10 +4,6 @@ public class AvailableCheck   {
 
     private boolean available;
 
-    public AvailableCheck() {
-        super();
-    }
-
     public AvailableCheck(boolean available) {
         this.available = available;
     }

@@ -1,9 +1,9 @@
 package com.ksun.mrsk.containerbooking.service;
 
-import com.ksun.mrsk.containerbooking.model.IdBooking;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
 import com.ksun.mrsk.containerbooking.model.dto.ContainerType;
+import com.ksun.mrsk.containerbooking.model.entity.IdBooking;
 import com.ksun.mrsk.containerbooking.repository.BookingRepository;
 import com.ksun.mrsk.containerbooking.repository.IdRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 class ContainerBookingServiceTest {
 

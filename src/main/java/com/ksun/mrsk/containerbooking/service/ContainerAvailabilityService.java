@@ -2,8 +2,6 @@ package com.ksun.mrsk.containerbooking.service;
 
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingCheckRequest;
-
-
 import com.ksun.mrsk.containerbooking.model.dto.SpaceAvailabilityResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,21 +20,10 @@ public class ContainerAvailabilityService {
     }
 
     public Mono<AvailableCheck> checkAvailable(BookingCheckRequest bookingRequest) {
-//                Mono<String> testResponse = client.get()
-//                .uri("/ip")
-//                .retrieve()
-//                .bodyToMono(String.class);
-//        testResponse.subscribe(System.out::println);
         return client.post()
                 .uri("/api/bookings/checkAvailable")
                 .retrieve()
                 .bodyToMono(SpaceAvailabilityResponse.class)
                 .map(e -> new AvailableCheck(e.getAvailableSpace() > 0));
-
-
-//          return Mono.just(new SpaceAvailabilityResponse(0))
-//                  .map(e -> new AvailableCheck(e.getAvailableSpace()>0));
-
-
     }
 }

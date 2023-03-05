@@ -9,28 +9,21 @@ import javax.validation.constraints.NotNull;
 
 public class BookingCheckRequest {
 
-
-    @NotNull(message = "containerSizetette") //todo
-    private Integer containerSize; //– either 20 or 40
-    // @NotBlank(message = "Task description must not be blank!")
-
-    @NotNull(message = "containerType")
-    private ContainerType containerType; // – DRY, REEFER
-
-    @Min(5) //todo not numbers
+    @NotNull
+    private Integer containerSize;
+    @NotNull
+    private ContainerType containerType;
     @Max(20)
-    @NotNull(message = "tette")
-    private String origin;  //– min 5, max 20
-
+    @NotNull
+    private String origin;
     @Min(5)
     @Max(20)
-    @NotNull(message = "destination")
-    private String destination;  //– min 5, max 20
-
+    @NotNull
+    private String destination;
     @Min(1)
     @Max(100)
-    @NotNull(message = "quantity")
-    private Integer quantity; // – min 1, max 100
+    @NotNull
+    private Integer quantity;
 
     public BookingCheckRequest() {
     }
