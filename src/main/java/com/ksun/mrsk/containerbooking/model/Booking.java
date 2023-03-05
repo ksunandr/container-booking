@@ -5,7 +5,6 @@ import org.springframework.data.cassandra.core.mapping.*;
 
 import java.io.Serializable;
 
-
 @Table(value = "bookings")
 public class Booking implements Serializable {
 

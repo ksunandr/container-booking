@@ -45,7 +45,6 @@ public class ContainerBookingService {
 
     private IdBooking createInitialId() {
         return new IdBooking(IdBooking.id_initial, IdBooking.id_name);
-
     }
 
     private Booking map(BookingRequest bookingRequest) {

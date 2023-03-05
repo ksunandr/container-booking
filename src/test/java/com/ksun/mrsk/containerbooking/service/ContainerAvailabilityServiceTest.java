@@ -52,7 +52,6 @@ class ContainerAvailabilityServiceTest {
         StepVerifier.create(response)
                 .expectNextMatches(availableCheck -> !availableCheck.isAvailable())
                 .verifyComplete();
-
     }
 
     @Test
