@@ -7,6 +7,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class AppConfig {
 
+//    @Bean
+//    public WebClient prepareExternalWebClient() {
+//        return WebClient.create("https://httpbin.org/");
+//    }
+
+
     @Bean
     public WebClient prepareExternalWebClient() {
         return WebClient.create("https://www.maersk.com");

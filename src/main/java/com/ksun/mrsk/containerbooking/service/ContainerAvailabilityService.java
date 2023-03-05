@@ -22,6 +22,11 @@ public class ContainerAvailabilityService {
     }
 
     public Mono<AvailableCheck> checkAvailable(BookingCheckRequest bookingRequest) {
+//                Mono<String> testResponse = client.get()
+//                .uri("/ip")
+//                .retrieve()
+//                .bodyToMono(String.class);
+//        testResponse.subscribe(System.out::println);
         return client.post()
                 .uri("/api/bookings/checkAvailable")
                 .retrieve()
