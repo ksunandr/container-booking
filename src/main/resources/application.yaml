@@ -1,0 +1,15 @@
+#server:
+#  port: 8081
+#
+spring:
+  data:
+    cassandra:
+#      contactPoints: [ksan.cassandra.cosmos.azure.com:10350]
+      port: 10350
+      keyspace-name: ContainerBooking
+      password: A1aUjAOqEY9TzjciOa8tav8V7sjhbAJCxesTQBjkNkh7i1n3jEWNI2fpgKj7ZUxkkiNBe4IVZU3jACDbcSXEHg==
+      username: ksan
+      hostName: ksan.cassandra.cosmos.azure.com
+      schema-action: CREATE_IF_NOT_EXISTS
+      local-datacenter: datacenter1
+
