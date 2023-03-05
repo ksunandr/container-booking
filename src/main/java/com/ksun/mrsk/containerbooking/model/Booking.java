@@ -3,25 +3,26 @@ package com.ksun.mrsk.containerbooking.model;
 
 import org.springframework.data.cassandra.core.mapping.*;
 
+import java.io.Serializable;
+
 
 @Table(value = "bookings")
-public class Booking {
+public class Booking implements Serializable {
 
-    @PrimaryKey
-    private Long id;
+    @PrimaryKey("booking_ref")
+    private int bookingRef;
     @Column(value = "container_size")
     private Integer containerSize;
-    @Column
+    @Column(value = "origin")
     private String origin;
-    @Column
+    @Column(value = "destination")
     private String destination;
-    @Column
+    @Column(value = "quantity")
     private Integer quantity;
-    @Column
+    @Column(value = "timestamp")
     private String timestamp;
 
-    public Booking(Long id, Integer containerSize, String origin, String destination, Integer quantity, String timestamp) {
-        this.id = id; //todo
+    public Booking( Integer containerSize, String origin, String destination, Integer quantity, String timestamp) {
         this.containerSize = containerSize;
         this.origin = origin;
         this.destination = destination;
@@ -29,12 +30,12 @@ public class Booking {
         this.timestamp = timestamp;
     }
 
-    public Long getId() {
-        return id;
+    public int getBookingRef() {
+        return bookingRef;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBookingRef(int bookingRef) {
+        this.bookingRef = bookingRef;
     }
 
     public Integer getContainerSize() {

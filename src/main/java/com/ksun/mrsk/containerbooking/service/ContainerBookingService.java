@@ -1,13 +1,14 @@
 package com.ksun.mrsk.containerbooking.service;
 
-//import com.ksun.mrsk.containerbooking.model.Booking;
+
+
 import com.ksun.mrsk.containerbooking.model.Booking;
-import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
+import com.ksun.mrsk.containerbooking.model.IdBooking;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
-import com.ksun.mrsk.containerbooking.model.dto.SpaceAvailabilityResponse;
-//import com.ksun.mrsk.containerbooking.repository.BookingRepository;
+
 import com.ksun.mrsk.containerbooking.repository.BookingRepository;
+import com.ksun.mrsk.containerbooking.repository.IdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -15,30 +16,43 @@ import reactor.core.publisher.Mono;
 @Component
 public class ContainerBookingService {
 
-  private BookingRepository bookingRepository;
+    private BookingRepository bookingRepository;
+    private IdRepository idRepository;
 
 
     public ContainerBookingService() {
     }
 
     @Autowired
-    public ContainerBookingService(BookingRepository bookingRepository) {
+    public ContainerBookingService(BookingRepository bookingRepository, IdRepository idRepository) {
         this.bookingRepository = bookingRepository;
+        this.idRepository = idRepository;
     }
 
     public Mono<BookingResponse> book(BookingRequest bookingRequest) {
+        return idRepository.findById(IdBooking.id_name)
+                .defaultIfEmpty(createInitialId())
+                .map(idBooking -> {
+                    Booking booking = map(bookingRequest);
+                    idBooking.setNextId(idBooking.getNextId() + 1);
 
-
-
-
-      Booking booking = new Booking(null,1, "des", "e", 1, "tt39849yt"); //todo
-
-        bookingRepository.save(booking);
-
-        return Mono.just(new BookingResponse("00"));
+                    idRepository.save(idBooking);
+                    bookingRepository.save(booking);
+                    return new BookingResponse("" + booking.getBookingRef());
+                });
+//        return Mono.just(new BookingResponse("00"));
     }
 
-    private Booking map(BookingRequest bookingRequest){
-     return new Booking(null,1, "des", "e", 1, "tt39849yt");
+    private IdBooking createInitialId() {
+        return new IdBooking(IdBooking.id_initial, IdBooking.id_name);
+
+    }
+
+    private Booking map(BookingRequest bookingRequest) {
+        return new Booking(bookingRequest.getContainerSize(),
+                bookingRequest.getOrigin(),
+                bookingRequest.getDestination(),
+                bookingRequest.getQuantity(),
+                bookingRequest.getTimestamp());
     }
 }
