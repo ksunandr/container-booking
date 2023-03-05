@@ -14,7 +14,8 @@ public class BookingRequest extends BookingCheckRequest {
     public BookingRequest() {
     }
 
-    public BookingRequest(Integer containerSize, ContainerType containerType, String origin, String destination, Integer quantity, String timestamp) {
+    public BookingRequest(Integer containerSize, ContainerType containerType, String origin, String destination,
+                          Integer quantity, String timestamp) {
         super(containerSize, containerType, origin, destination, quantity);
         this.timestamp = timestamp;
     }

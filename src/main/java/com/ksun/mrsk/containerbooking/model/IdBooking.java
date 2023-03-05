@@ -12,7 +12,7 @@ public class IdBooking {
     public static final int id_initial = 957000000;
 
     @PrimaryKey("nextId")
-    private int nextId;
+    private int currentId;
 
     @Column(value = "id_name")
     private String idName ;
@@ -21,16 +21,16 @@ public class IdBooking {
     }
 
     public IdBooking(int nextId, String idName) {
-        this.nextId = nextId;
+        this.currentId = nextId;
         this.idName = idName;
     }
 
-    public int getNextId() {
-        return nextId;
+    public int getCurrentId() {
+        return currentId;
     }
 
-    public void setNextId(int nextId) {
-        this.nextId = nextId;
+    public void setCurrentId(int currentId) {
+        this.currentId = currentId;
     }
 
     public String getIdName() {

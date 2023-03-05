@@ -20,9 +20,6 @@ public class ContainerBookingService {
     private IdRepository idRepository;
 
 
-    public ContainerBookingService() {
-    }
-
     @Autowired
     public ContainerBookingService(BookingRepository bookingRepository, IdRepository idRepository) {
         this.bookingRepository = bookingRepository;
@@ -34,8 +31,8 @@ public class ContainerBookingService {
                 .defaultIfEmpty(createInitialId())
                 .map(idBooking -> {
                     Booking booking = map(bookingRequest);
-                    idBooking.setNextId(idBooking.getNextId() + 1);
-
+                    idBooking.setCurrentId(idBooking.getCurrentId() + 1);
+                    booking.setBookingRef(idBooking.getCurrentId());
                     idRepository.save(idBooking);
                     bookingRepository.save(booking);
                     return new BookingResponse("" + booking.getBookingRef());
