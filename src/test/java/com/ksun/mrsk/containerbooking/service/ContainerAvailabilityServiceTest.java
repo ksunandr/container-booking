@@ -1,9 +1,7 @@
 package com.ksun.mrsk.containerbooking.service;
 
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
-import com.ksun.mrsk.containerbooking.model.dto.BookingCheckRequest;
-import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
-import com.ksun.mrsk.containerbooking.model.dto.ContainerType;
+import com.ksun.mrsk.containerbooking.model.dto.CheckRequest;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -47,7 +45,7 @@ class ContainerAvailabilityServiceTest {
                 .setBody("{\"availableSpace\": 0}")
                 .addHeader("Content-Type", "application/json"));
 
-        Mono<AvailableCheck> response = sut.checkAvailable(new BookingCheckRequest());
+        Mono<AvailableCheck> response = sut.checkAvailable(new CheckRequest());
 
         StepVerifier.create(response)
                 .expectNextMatches(availableCheck -> !availableCheck.isAvailable())
@@ -61,11 +59,10 @@ class ContainerAvailabilityServiceTest {
                 .setBody("{\"availableSpace\": 6}")
                 .addHeader("Content-Type", "application/json"));
 
-        Mono<AvailableCheck> response = sut.checkAvailable(new BookingCheckRequest());
+        Mono<AvailableCheck> response = sut.checkAvailable(new CheckRequest());
 
         StepVerifier.create(response)
                 .expectNextMatches(AvailableCheck::isAvailable)
                 .verifyComplete();
-
     }
 }

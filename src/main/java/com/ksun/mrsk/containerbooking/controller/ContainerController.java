@@ -3,7 +3,7 @@ package com.ksun.mrsk.containerbooking.controller;
 import com.ksun.mrsk.containerbooking.model.dto.AvailableCheck;
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
-import com.ksun.mrsk.containerbooking.model.dto.BookingCheckRequest;
+import com.ksun.mrsk.containerbooking.model.dto.CheckRequest;
 import com.ksun.mrsk.containerbooking.service.ContainerAvailabilityService;
 import com.ksun.mrsk.containerbooking.service.ContainerBookingService;
 import com.ksun.mrsk.containerbooking.validator.BookingRequestValidator;
@@ -33,11 +33,11 @@ public class ContainerController {
     }
 
     @PostMapping("/check")
-    public Mono<AvailableCheck> availableCheck(@Valid @RequestBody BookingCheckRequest bookingRequest){
+    public Mono<AvailableCheck> availableCheck(@Valid @RequestBody CheckRequest bookingRequest){
         return containerAvailabilityService.checkAvailable(bookingRequest);
     }
 
-    @PostMapping("/booking")
+    @PostMapping("/book")
     public Mono<BookingResponse> book(@Valid @RequestBody BookingRequest bookingRequest){
         return containerBookingService.book(bookingRequest);
     }

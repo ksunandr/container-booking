@@ -1,6 +1,5 @@
 package com.ksun.mrsk.containerbooking.service;
 
-
 import com.ksun.mrsk.containerbooking.model.dto.BookingRequest;
 import com.ksun.mrsk.containerbooking.model.dto.BookingResponse;
 import com.ksun.mrsk.containerbooking.model.entity.Booking;
@@ -14,9 +13,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class ContainerBookingService {
 
-    private BookingRepository bookingRepository;
-    private IdRepository idRepository;
-
+    private final BookingRepository bookingRepository;
+    private final IdRepository idRepository;
 
     @Autowired
     public ContainerBookingService(BookingRepository bookingRepository, IdRepository idRepository) {
@@ -25,7 +23,7 @@ public class ContainerBookingService {
     }
 
     public Mono<BookingResponse> book(BookingRequest bookingRequest) {
-        return idRepository.findById(IdBooking.id_name)
+        return idRepository.findById(IdBooking.ID_NAME)
                 .defaultIfEmpty(createInitialId())
                 .map(idBooking -> {
                     Booking booking = map(bookingRequest);
@@ -33,13 +31,12 @@ public class ContainerBookingService {
                     booking.setBookingRef(idBooking.getCurrentId());
                     idRepository.save(idBooking);
                     bookingRepository.save(booking);
-                    return new BookingResponse("" + booking.getBookingRef());
+                    return new BookingResponse(String.valueOf(booking.getBookingRef()));
                 });
-//        return Mono.just(new BookingResponse("00"));
     }
 
     private IdBooking createInitialId() {
-        return new IdBooking(IdBooking.id_initial, IdBooking.id_name);
+        return new IdBooking(IdBooking.ID_INITIAL, IdBooking.ID_NAME);
     }
 
     private Booking map(BookingRequest bookingRequest) {

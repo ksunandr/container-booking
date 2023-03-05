@@ -1,13 +1,10 @@
 package com.ksun.mrsk.containerbooking.model.dto;
 
-
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-
-public class BookingCheckRequest {
+public class CheckRequest {
 
     @NotNull
     private Integer containerSize;
@@ -25,14 +22,14 @@ public class BookingCheckRequest {
     @NotNull
     private Integer quantity;
 
-    public BookingCheckRequest() {
+    public CheckRequest() {
     }
 
-    public BookingCheckRequest(Integer containerSize,
-                               ContainerType containerType,
-                               String origin,
-                               String destination,
-                               Integer quantity) {
+    public CheckRequest(Integer containerSize,
+                        ContainerType containerType,
+                        String origin,
+                        String destination,
+                        Integer quantity) {
         this.containerSize = containerSize;
         this.containerType = containerType;
         this.origin = origin;

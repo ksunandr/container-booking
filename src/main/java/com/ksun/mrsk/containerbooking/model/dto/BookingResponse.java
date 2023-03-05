@@ -4,13 +4,11 @@ import java.util.Objects;
 
 public class BookingResponse {
 
-    String bookingRef;
+    private String bookingRef;
 
     public BookingResponse(String bookingRef) {
         this.bookingRef = bookingRef;
     }
-
-
 
     public String getBookingRef() {
         return bookingRef;
@@ -18,14 +16,6 @@ public class BookingResponse {
 
     public void setBookingRef(String bookingRef) {
         this.bookingRef = bookingRef;
-    }
-
-
-    @Override
-    public String toString() {
-        return "BookingResponse{" +
-                "bookingRef='" + bookingRef + '\'' +
-                '}';
     }
 
     @Override
@@ -39,5 +29,12 @@ public class BookingResponse {
     @Override
     public int hashCode() {
         return Objects.hash(bookingRef);
+    }
+
+    @Override
+    public String toString() {
+        return "BookingResponse{" +
+                "bookingRef='" + bookingRef + '\'' +
+                '}';
     }
 }
