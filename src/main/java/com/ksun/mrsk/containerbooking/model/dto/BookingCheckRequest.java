@@ -17,7 +17,7 @@ public class BookingCheckRequest {
     @NotNull(message = "containerType")
     private ContainerType containerType; // – DRY, REEFER
 
-    @Min(5)
+    @Min(5) //todo not numbers
     @Max(20)
     @NotNull(message = "tette")
     private String origin;  //– min 5, max 20
@@ -25,12 +25,12 @@ public class BookingCheckRequest {
     @Min(5)
     @Max(20)
     @NotNull(message = "destination")
-    String destination;  //– min 5, max 20
+    private String destination;  //– min 5, max 20
 
     @Min(1)
     @Max(100)
     @NotNull(message = "quantity")
-    Integer quantity; // – min 1, max 100
+    private Integer quantity; // – min 1, max 100
 
     public BookingCheckRequest() {
     }
