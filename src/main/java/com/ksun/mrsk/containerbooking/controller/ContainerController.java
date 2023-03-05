@@ -42,11 +42,6 @@ public class ContainerController {
         return containerBookingService.book(bookingRequest);
     }
 
-//    @GetMapping("/test")
-//    public Mono<AvailableCheck> availableCheck1(@Valid @RequestBody BookingRequest bookingRequest){
-//        return containerAvailabilityService.checkAvailable(bookingRequest);
-//    }
-
     @InitBinder
     protected void initBinder(WebDataBinder binder){
         binder.addValidators(new BookingRequestValidator());
@@ -61,6 +56,4 @@ public class ContainerController {
                 .collect(Collectors.toList());
         return ResponseEntity.badRequest().body(errors);
     }
-
-
 }

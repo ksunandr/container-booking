@@ -28,11 +28,17 @@ public class ContainerBookingService {
 
     public Mono<BookingResponse> book(BookingRequest bookingRequest) {
 
-      Booking booking=  new Booking(null,1, "des", "e", 1, "tt39849yt");
+
+
+
+      Booking booking = new Booking(null,1, "des", "e", 1, "tt39849yt"); //todo
 
         bookingRepository.save(booking);
 
         return Mono.just(new BookingResponse("00"));
+    }
 
+    private Booking map(BookingRequest bookingRequest){
+     return new Booking(null,1, "des", "e", 1, "tt39849yt");
     }
 }
