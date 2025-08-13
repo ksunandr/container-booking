@@ -1,10 +1,10 @@
 # container-booking
 User Story
-As a Maersk customer
-I want to be able to book containers with Maersk
+As a customer
+I want to be able to book containers
 So that I can deliver cargo to my customers
 
-The aim of this story is to develop two microservice endpoints that enable a customer to book a container with Maersk. There is no need to consider 
+The aim of this story is to develop two microservice endpoints that enable a customer to book a container. There is no need to consider 
 authentication or authorization mechanisms for this task.
 
 One endpoint will establish if there are enough containers of an appropriate size and type at a given container yard to meet the customers booking requirements. 
